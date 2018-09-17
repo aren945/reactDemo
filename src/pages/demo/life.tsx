@@ -1,6 +1,8 @@
 import * as React from 'react';
 
+import { Button } from 'antd';
 import Child from './Child';
+import './life.less';
 
 interface Istates {
     count: number,
@@ -27,8 +29,9 @@ class Life extends React.Component<{}, Istates>{ // state需要对Istates接口�
 
     public render(): React.ReactNode {
         return(
-            <div>
+            <div className="life">
                 <p>React生命周期介绍</p>
+                <Button onClick={ this.handleAdd }>点击一下</Button>
                 <button onClick={ this.handleAdd }>点击一下</button>
                 <p>{ this.state.count }</p>
                 <Child name={this.state.name}/>
