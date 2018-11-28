@@ -7,7 +7,8 @@ import './Header.less';
 interface Istate {
   userName: string | '',
   sysTime: string,
-  weather: string
+  weather: string,
+  imgUrl: ''
 }
 
 class Header extends React.Component {
@@ -22,6 +23,7 @@ class Header extends React.Component {
   }
 
   public render(): React.ReactNode {
+    const imgC = this.state.imgUrl ? <img src={this.state.imgUrl} alt=""/> : '';
     return (
       <div className="header-wrapper">
         <Row className="top-header">
@@ -31,12 +33,13 @@ class Header extends React.Component {
           </Col>
         </Row>
         <Row className="bottom-header">
-          <Col span={4} className="bread-name">
+          <Col span={4} className="bread-name"> 
             <span>首页</span>
           </Col>
           <Col span={20} className="bread-weather">
             <span>{this.state.sysTime}</span>
             <span>{this.state.weather}</span>
+            { imgC }
           </Col>
         </Row>
       </div>
@@ -60,7 +63,8 @@ class Header extends React.Component {
        url
      }).then(res => {
        this.setState({
-         weather:  res.data.observe.degree + '°C' + res.data.observe.weather
+         weather:  res.data.observe.degree + '°C' + res.data.observe.weather,
+         imgUrl: `https://mat1.gtimg.com/pingjs/ext2020/weather/pc/icon/weather/day/${res.data.observe.weather_code}.png`
        })
        window.console.log(res.data.observe)
      })

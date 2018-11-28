@@ -1,6 +1,7 @@
 .header-wrapper {
   display: flex;
   flex-direction: column;
+  background: white;
   .top-header {
     height: 60px;
     .top-row {
@@ -27,11 +28,17 @@
     .bread-weather {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       span {
         &:nth-child(1) {
           margin-right: 40px;
           font-weight: bold;
         }
+      }
+      img {
+        height: 25px;
+        width: auto;
+        margin-left: 15px;
       }
     }
   }

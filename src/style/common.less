@@ -1,3 +1,5 @@
+@import './default.less';
+
 .container {
   display: flex;
   .nav-left {
@@ -6,11 +8,24 @@
     background: #001529;
   }
   .main {
-    flex-grow: 1;
     height: calc(100vh);
+    background: @colorN;
+    display: flex;
+    flex-direction: column;
   }
-  .content {
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
     position: relative;
     padding: 20px;
+    flex-grow: 1;
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      background: white;
+      flex-grow: 1;
+    }
   }
 }

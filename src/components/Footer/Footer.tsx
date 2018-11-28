@@ -1,10 +1,11 @@
 import * as React from 'react';
+import './Footer.less'
 
 class Footer extends React.Component {
   public render(): React.ReactNode {
     return(
-      <div>
-        this is Footer
+      <div className="footer">
+        <span>共享单车管理后台</span>
       </div>
     )
   }
