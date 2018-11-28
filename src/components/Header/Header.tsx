@@ -1,11 +1,13 @@
 import * as React from "react";
 import { Row, Col } from "antd";
 import utils from '../../utils/utils';
+import Axios from '../../axios/index';
 import './Header.less';
 
 interface Istate {
   userName: string | '',
-  sysTime: string
+  sysTime: string,
+  weather: string
 }
 
 class Header extends React.Component {
@@ -13,6 +15,7 @@ class Header extends React.Component {
 
   public componentWillMount(): void {
     this.computedTime();
+    this.getWeatherData();
     this.setState({
       userName: '郑兴伦'
     })
@@ -33,7 +36,7 @@ class Header extends React.Component {
           </Col>
           <Col span={20} className="bread-weather">
             <span>{this.state.sysTime}</span>
-            <span>晴转多云</span>
+            <span>{this.state.weather}</span>
           </Col>
         </Row>
       </div>
@@ -47,6 +50,20 @@ class Header extends React.Component {
         sysTime
       })
     }, 1000)
+  }
+
+  private getWeatherData(): void {
+    const province = '四川省'
+    const city = '成都市'
+    const url = encodeURI(`https://wis.qq.com/weather/common?source=pc&weather_type=observe|forecast_1h|forecast_24h|index|alarm|limit|tips|rise&province=${province}&city=${city}&_=1543405395492`);
+     Axios.jsonp({
+       url
+     }).then(res => {
+       this.setState({
+         weather:  res.data.observe.degree + '°C' + res.data.observe.weather
+       })
+       window.console.log(res.data.observe)
+     })
   }
 }
 
