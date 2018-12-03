@@ -4,6 +4,7 @@ import MenuConfig from '../../config/menuConfig';
 import {Menu} from 'antd';
 
 import './index.less';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 interface Imenu {
     title: string,
@@ -38,7 +39,7 @@ export default class NavLeft extends React.Component {
                     </Menu.SubMenu>
                 )
             }
-            return <Menu.Item key={index}> {item.title} </Menu.Item>
+            return <Menu.Item key={index}> <Link to={item.key}>{item.title}</Link> </Menu.Item>
         })
     };
 
@@ -49,19 +50,11 @@ export default class NavLeft extends React.Component {
                     <img src="/assets/logo-ant.svg" className="logo"/>
                     <div className="logo-name">ImoocMS</div>
                 </div>
-                <Menu mode="vertical" theme={this.state.theme}>
-                    {/*{MenuConfig.map((item, index) => {*/}
-                        {/*if (item.children) {*/}
-                            {/*return (<Menu.SubMenu key={index} title={item.title}>*/}
-                                {/*{item.children.map((cItem, cIndex) => {*/}
-                                    {/*return <Menu.Item key={cIndex}>{cItem.title}</Menu.Item>*/}
-                                {/*})}*/}
-                            {/*</Menu.SubMenu>)*/}
-                        {/*}*/}
-                        {/*return <Menu.SubMenu key={index} title={item.title}/>*/}
-                    {/*})}*/}
-                    {this.state.menuTreeNode}
-                </Menu>
+                <Router>
+                    <Menu mode="vertical" theme={this.state.theme}>
+                        {this.state.menuTreeNode}
+                    </Menu>
+                </Router>
             </div>
         )
     }

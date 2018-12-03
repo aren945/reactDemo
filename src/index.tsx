@@ -3,11 +3,12 @@ import * as ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 // import Life from './pages/demo/life';
-import Admin from './admin';
+// import Admin from './admin';
+import RouterMain from './pages/router_demo/router1/Index';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <Admin />,
+  <RouterMain />,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

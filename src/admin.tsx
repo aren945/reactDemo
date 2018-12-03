@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import NavLeft from "./components/NavLeft/NavLeft";
 import HomePage from './pages/home/Home';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import { Row } from 'antd';
 
 import './style/common.less';
