@@ -5,6 +5,8 @@ export default class TopicPage extends React.Component {
     return (
       <div>
         this is Topic page
+        <hr/>
+        {this.props.children}
       </div>
     )
   }
