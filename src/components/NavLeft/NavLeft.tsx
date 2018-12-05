@@ -4,7 +4,7 @@ import MenuConfig from '../../config/menuConfig';
 import {Menu} from 'antd';
 
 import './index.less';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, NavLink } from 'react-router-dom';
 
 interface Imenu {
     title: string,
@@ -39,7 +39,7 @@ export default class NavLeft extends React.Component {
                     </Menu.SubMenu>
                 )
             }
-            return <Menu.Item key={index}> <Link to={item.key}>{item.title}</Link> </Menu.Item>
+            return <Menu.Item key={index}> <NavLink to={item.key}>{item.title}</NavLink> </Menu.Item>
         })
     };
 

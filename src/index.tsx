@@ -6,7 +6,8 @@ import './index.css';
 // import Admin from './admin';
 // import RouterMain from './pages/router_demo/router1/Index';
 // import RouterMain from './pages/router_demo/router2/router';
-import RouterMain from './pages/router_demo/router3/Router3Main'
+// import RouterMain from './pages/router_demo/router3/Router3Main'
+import RouterMain from './router';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
