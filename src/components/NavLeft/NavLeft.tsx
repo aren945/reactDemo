@@ -1,61 +1,73 @@
-import * as React from 'react';
+import * as React from "react";
 
-import MenuConfig from '../../config/menuConfig';
-import {Menu} from 'antd';
+import MenuConfig from "../../config/menuConfig";
+import { Menu } from "antd";
 
-import './index.less';
-import { HashRouter as Router, NavLink } from 'react-router-dom';
+import "./index.less";
+import { HashRouter as Router, NavLink, withRouter } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 
 interface Imenu {
-    title: string,
-    key: string,
-    children?: Imenu[]
+  title: string;
+  key: string;
+  children?: Imenu[];
 }
 
 interface Istate {
-    theme: 'dark' |  'light' | undefined,
-    menuTreeNode?: React.ReactNode
+  theme: "dark" | "light" | undefined;
+  menuTreeNode?: React.ReactNode;
 }
 
-export default class NavLeft extends React.Component {
-    public state: Istate = {
-        theme: 'dark'
-    };
+class NavLeft extends React.Component<RouteComponentProps> {
+  public state: Istate = {
+    theme: "dark"
+  };
 
-    public componentWillMount() {
-        const menuTreeNode = this.renderMenu(MenuConfig);
+  public componentWillMount() {
+    const menuTreeNode = this.renderMenu(MenuConfig);
 
-        this.setState({
-            menuTreeNode
-        })
-    }
+    this.setState({
+      menuTreeNode
+    });
+  }
 
-    public renderMenu = (data: Imenu[]) => {
-        return data.map((item: Imenu, index: number) => {
-            if (item.children) {
-                return (
-                    <Menu.SubMenu key={index} title={item.title}>
-                        {this.renderMenu(item.children)}
-                    </Menu.SubMenu>
-                )
-            }
-            return <Menu.Item key={index}> <NavLink to={item.key}>{item.title}</NavLink> </Menu.Item>
-        })
-    };
+  public handleSubMenuClick = (item: Imenu) => {
+    window.console.log(item)
+    this.props.history.push(item.key)
+  }
 
-    public render(): React.ReactNode {
+  public renderMenu = (data: Imenu[]) => {
+    return data.map((item: Imenu, index: number) => {
+      if (item.children) {
         return (
-            <div>
-                <div className="logo-wrapper">
-                    <img src="/assets/logo-ant.svg" className="logo"/>
-                    <div className="logo-name">ImoocMS</div>
-                </div>
-                <Router>
-                    <Menu mode="vertical" theme={this.state.theme}>
-                        {this.state.menuTreeNode}
-                    </Menu>
-                </Router>
-            </div>
-        )
-    }
+          <Menu.SubMenu key={index} title={item.title} onTitleClick={this.handleSubMenuClick.bind(this, item)}>
+            {this.renderMenu(item.children)}
+          </Menu.SubMenu>
+        );
+      }
+      return (
+        <Menu.Item key={index}>
+          <NavLink to={item.key}>{item.title}</NavLink>
+        </Menu.Item>
+      );
+    });
+  };
+
+  public render(): React.ReactNode {
+    return (
+      <div>
+        <div className="logo-wrapper">
+          <img src="/assets/logo-ant.svg" className="logo" />
+          <div className="logo-name">ImoocMS</div>
+        </div>
+        <Router>
+          <Menu mode="vertical" theme={this.state.theme}>
+            {this.state.menuTreeNode}
+          </Menu>
+        </Router>
+      </div>
+    );
+  }
 }
+
+export default withRouter(NavLeft)
