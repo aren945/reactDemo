@@ -40,13 +40,13 @@ class NavLeft extends React.Component<RouteComponentProps> {
     return data.map((item: Imenu, index: number) => {
       if (item.children) {
         return (
-          <Menu.SubMenu key={index} title={item.title} onTitleClick={this.handleSubMenuClick.bind(this, item)}>
+          <Menu.SubMenu key={item.title} title={item.title} onTitleClick={this.handleSubMenuClick.bind(this, item)}>
             {this.renderMenu(item.children)}
           </Menu.SubMenu>
         );
       }
       return (
-        <Menu.Item key={index}>
+        <Menu.Item key={item.title}>
           <NavLink to={item.key}>{item.title}</NavLink>
         </Menu.Item>
       );

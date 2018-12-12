@@ -10,6 +10,7 @@ import NotFoundPageComponent from './pages/404/404Page';
 
 import UiPageComponent from './pages/UI/UiPage';
 import ButtonPageComponent from './pages/UI/buttons/ButtonPage';
+import ModalPageComponent from './pages/UI/modals/ModalsPage';
 
 import TestComponent from './testComponents/testComponent';
 import PropsComponent from './testComponents/PropsComponent/PropComponent';
@@ -48,6 +49,7 @@ export default class MainComponent extends React.Component {
         <Switch>
           <Route exact={true}  path="/admin/ui" component={ UiPageComponent } />
           <Route path="/admin/ui/buttons" component= { ButtonPageComponent } />
+          <Route path="/admin/ui/modals" component= { ModalPageComponent } />
           <Route exact={true} path="/admin" component={HomePageComponent} />
           <Route component={NotFoundPageComponent} />
         </Switch>
