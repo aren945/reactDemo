@@ -11,6 +11,9 @@ import NotFoundPageComponent from './pages/404/404Page';
 import UiPageComponent from './pages/UI/UiPage';
 import ButtonPageComponent from './pages/UI/buttons/ButtonPage';
 
+import TestComponent from './testComponents/testComponent';
+import PropsComponent from './testComponents/PropsComponent/PropComponent';
+
 export default class MainComponent extends React.Component {
   public render(): React.ReactNode {
     return (
@@ -20,10 +23,22 @@ export default class MainComponent extends React.Component {
             {/* <Route path="/admin" component={ AdminComponent } /> */}
             <Route path="/admin" render={ this._adminRender } />
             <Route path="/login" component={ LoginPageComponent } />
+            <Route path="/test" render={ this._testComponentRender } />
             <Route component={ NotFoundPageComponent } />
           </Switch>
         </AppComponent>
       </Router>
+    )
+  }
+
+  private _testComponentRender(): React.ReactNode {
+    return(
+      <TestComponent>
+        <Switch>
+          <Route path="/test/props" component={PropsComponent} />
+          <Route component={ NotFoundPageComponent } />
+        </Switch>
+      </TestComponent>
     )
   }
 
@@ -33,7 +48,8 @@ export default class MainComponent extends React.Component {
         <Switch>
           <Route exact={true}  path="/admin/ui" component={ UiPageComponent } />
           <Route path="/admin/ui/buttons" component= { ButtonPageComponent } />
-          <Route component={HomePageComponent} />
+          <Route exact={true} path="/admin" component={HomePageComponent} />
+          <Route component={NotFoundPageComponent} />
         </Switch>
       </AdminComponent>
     )

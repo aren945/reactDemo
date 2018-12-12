@@ -39,7 +39,7 @@ export default class NavLeft extends React.Component {
                     </Menu.SubMenu>
                 )
             }
-            return <Menu.Item key={index}> <NavLink to={item.key}>{item.title}</NavLink> </Menu.Item>
+            return <Menu.Item key={item.title}> <NavLink to={item.key}>{item.title}</NavLink> </Menu.Item>
         })
     };
 
