@@ -42,7 +42,7 @@ export default class PropComponent extends React.Component<RouteComponentProps, 
   private _renderChild(): React.ReactNode {
     return (
       <>
-        <PropChild2 name={ this.state.name} gender="niupi" onChangeName = {this.handleChangeName2.bind(this, 'xinglun')} />
+        <PropChild2 name={ this.state.name} gender="niupi" onChangeName = {this.handleChangeName2} />
       </>
     )
   }
@@ -55,6 +55,7 @@ export default class PropComponent extends React.Component<RouteComponentProps, 
         <Button name="xinglun" data-name="dasd" onClick={this.handleChangeName}>点击修改姓名</Button>
         <hr/>
         {this._renderChild()}
+        <PropChild2 name={ this.state.name} gender="niupi" onChangeName = {this.handleChangeName2} />
         <hr/>
         {/* <Button onClick={(e) => this.handleChangeName(name, e)}>点击修改姓名</Button> */}
         <PropChild1 name={ this.state.name} gender="man" />
