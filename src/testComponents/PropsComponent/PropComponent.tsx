@@ -34,8 +34,12 @@ export default class PropComponent extends React.Component<RouteComponentProps, 
   public handleChangeName2 = (name: string, e: React.MouseEvent<HTMLButtonElement>) => {
     window.console.log((e.target as HTMLInputElement).getAttribute('data-name'))
     // window.console.log(e.target)
-    this.setState({
-      name
+    this.setState((revState:any, prop: any,) => {
+      window.console.log('revState is', revState)
+      window.console.log('prop is', prop)
+      return {
+        name
+      }
     })
   }
 

@@ -15,6 +15,9 @@ import LoadingsPageComponent from './pages/UI/loadings/LoadingsPage';
 
 import TestComponent from './testComponents/testComponent';
 import PropsComponent from './testComponents/PropsComponent/PropComponent';
+import HocComponent from './testComponents/HOCTest/DemoComponent';
+import Hooks1Component from './testComponents/HOOKS/Hooks1Component';
+import ReduxTestComponent from './testComponents/ReduxShopping/ReduxTestComponent';
 
 export default class MainComponent extends React.Component {
   public render(): React.ReactNode {
@@ -38,6 +41,9 @@ export default class MainComponent extends React.Component {
       <TestComponent>
         <Switch>
           <Route path="/test/props" component={PropsComponent} />
+          <Route path="/test/hoc" component={HocComponent} />
+          <Route path="/test/hooks" component={Hooks1Component} />
+          <Route path="/test/rtest" component={ReduxTestComponent} />
           <Route component={ NotFoundPageComponent } />
         </Switch>
       </TestComponent>

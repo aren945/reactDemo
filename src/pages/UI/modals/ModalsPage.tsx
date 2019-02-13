@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { Card, Button, Modal } from 'antd';
+import TestComponent from './TestComponent';
 
 import './Modals.less';
+
+function Contacts() {
+  return <div className="Contacts">sdasd</div>;
+} 
 
 export default class ModalPageComponent extends React.Component<{}> {
   public state = {
@@ -25,7 +30,6 @@ export default class ModalPageComponent extends React.Component<{}> {
   }
   
   public handleShowConfirmModal = (type: string) => {
-
     Modal[type]({
       title: 'confirm modal',
       content: (
@@ -57,6 +61,13 @@ export default class ModalPageComponent extends React.Component<{}> {
           <Button type="primary" onClick={ this.handleShowConfirmModal.bind(this, 'info') }>info</Button>
           <Button type="primary" onClick={ this.handleShowConfirmModal.bind(this, 'error') }>error</Button>
           <Button type="primary" onClick={ this.handleShowConfirmModal.bind(this, 'warning') }>warning</Button>
+        </Card>
+        <Card title="组合和继承" className="card-wrapper">
+            <TestComponent left = {
+              <Contacts />
+            }>
+            <h1>这是传递进来的DOM</h1>
+          </TestComponent>
         </Card>
         <Modal
           title="BaseModal"
