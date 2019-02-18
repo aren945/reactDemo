@@ -12,6 +12,8 @@ import UiPageComponent from './pages/UI/UiPage';
 import ButtonPageComponent from './pages/UI/buttons/ButtonPage';
 import ModalPageComponent from './pages/UI/modals/ModalsPage';
 import LoadingsPageComponent from './pages/UI/loadings/LoadingsPage';
+import TabsPageComponent from './pages/UI/Tabs/TabsPage';
+import MessagePageComponent from './pages/UI/message/MessagePageComponent';
 
 import TestComponent from './testComponents/testComponent';
 import PropsComponent from './testComponents/PropsComponent/PropComponent';
@@ -58,6 +60,9 @@ export default class MainComponent extends React.Component {
           <Route path="/admin/ui/buttons" component= { ButtonPageComponent } />
           <Route path="/admin/ui/modals" component= { ModalPageComponent } />
           <Route path="/admin/ui/loadings" component= { LoadingsPageComponent } />
+          <Route path="/admin/ui/messages" component= { MessagePageComponent } />
+          <Route path="/admin/ui/tabs" component= { TabsPageComponent } />
+          
           <Route exact={true} path="/admin" component={HomePageComponent} />
           <Route component={NotFoundPageComponent} />
         </Switch>
