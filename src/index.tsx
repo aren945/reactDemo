@@ -11,8 +11,13 @@ import './index.css';
 import RouterMain from './router';
 import registerServiceWorker from './registerServiceWorker';
 
+import { createStore } from 'redux';
+import AppStores from './stores/reducers';
+
+const store = createStore(AppStores)
+
 ReactDOM.render(
-  <RouterMain />,
+  <RouterMain store={store}/>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
