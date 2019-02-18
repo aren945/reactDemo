@@ -6,7 +6,10 @@ import './Modals.less';
 
 function Contacts() {
   return <div className="Contacts">sdasd</div>;
-} 
+}
+
+type modalType = 'modal1' | 'modal2' | 'modal3' | 'modal4' | 'ConfirmModal1';
+type modalType2 = 'confirm' | 'success' | 'info' | 'error' | 'warning';
 
 export default class ModalPageComponent extends React.Component<{}> {
   public state = {
@@ -17,19 +20,19 @@ export default class ModalPageComponent extends React.Component<{}> {
     ConfirmModal1: false
   }
 
-  public handleShowBaseModal = (type: string) => {
+  public handleShowBaseModal = (type: modalType) => {
     this.setState({
       [type]: !this.state[type]
     })
   }
 
-  public handleCloseBaseModal = (type: string) => {
+  public handleCloseBaseModal = (type: modalType) => {
     this.setState({
       [type]: !this.state[type]
     })
   }
   
-  public handleShowConfirmModal = (type: string) => {
+  public handleShowConfirmModal = (type: modalType2) => {
     Modal[type]({
       title: 'confirm modal',
       content: (

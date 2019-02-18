@@ -8,11 +8,11 @@ interface Istate {
   userName: string | '',
   sysTime: string,
   weather: string,
-  imgUrl: ''
+  imgUrl: '' | string
 }
 
-class Header extends React.Component {
-  public state: Istate
+class Header extends React.Component<{}, Istate> {
+  // public state: Istate
 
   public componentWillMount(): void {
     this.computedTime();

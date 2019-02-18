@@ -9,8 +9,17 @@ const a = [
   }
 ]
 
-const test1Reducer = (state: any = [], action: any) => {
-  return state
+const test1Reducer = (state: any = a, action: any) => {
+
+  console.log('state is', state)
+
+  switch(action.type) {
+    case 'DELETE':
+      state.pop()
+      return state
+    default:
+      return state
+  }
 }
 
 const test2Reducer = (state: any = a, action: any) => {

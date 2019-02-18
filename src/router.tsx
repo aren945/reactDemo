@@ -20,21 +20,25 @@ import PropsComponent from './testComponents/PropsComponent/PropComponent';
 import HocComponent from './testComponents/HOCTest/DemoComponent';
 import Hooks1Component from './testComponents/HOOKS/Hooks1Component';
 import ReduxTestComponent from './testComponents/ReduxShopping/ReduxTestComponent';
+import ReactReduxPageContainer from './testComponents/ReactReduxTest/containers/ReactReduxPageComtainer';
 
-export default class MainComponent extends React.Component {
+import { Provider, ProviderProps } from 'react-redux';
+class MainComponent extends React.Component<ProviderProps> {
   public render(): React.ReactNode {
     return (
-      <Router>
-        <AppComponent>
-          <Switch>
-            {/* <Route path="/admin" component={ AdminComponent } /> */}
-            <Route path="/admin" render={ this._adminRender } />
-            <Route path="/login" component={ LoginPageComponent } />
-            <Route path="/test" render={ this._testComponentRender } />
-            <Route component={ NotFoundPageComponent } />
-          </Switch>
-        </AppComponent>
-      </Router>
+      <Provider store={this.props.store}>
+        <Router>
+          <AppComponent>
+            <Switch>
+              {/* <Route path="/admin" component={ AdminComponent } /> */}
+              <Route path="/admin" render={ this._adminRender } />
+              <Route path="/login" component={ LoginPageComponent } />
+              <Route path="/test" render={ this._testComponentRender } />
+              <Route component={ NotFoundPageComponent } />
+            </Switch>
+          </AppComponent>
+        </Router>
+      </Provider>
     )
   }
 
@@ -46,6 +50,7 @@ export default class MainComponent extends React.Component {
           <Route path="/test/hoc" component={HocComponent} />
           <Route path="/test/hooks" component={Hooks1Component} />
           <Route path="/test/rtest" component={ReduxTestComponent} />
+          <Route path="/test/react-redux" component={ReactReduxPageContainer} />
           <Route component={ NotFoundPageComponent } />
         </Switch>
       </TestComponent>
@@ -70,3 +75,5 @@ export default class MainComponent extends React.Component {
     )
   }
 }
+
+export default MainComponent
