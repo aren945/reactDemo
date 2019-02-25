@@ -43,11 +43,11 @@ const menuList = [
   },
   {
       title:'表单',
-      key:'/form',
+      key:'/admin/form',
       children:[
           {
               title:'登录',
-              key:'/form/login',
+              key:'/admin/form/login',
               children: [
                   {
                       title:'注册23',
@@ -57,7 +57,7 @@ const menuList = [
           },
           {
               title:'注册',
-              key:'/form/reg',
+              key:'/admin/form/reg',
           }
       ]
   },

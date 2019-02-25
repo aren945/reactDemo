@@ -14,6 +14,9 @@ import ModalPageComponent from './pages/UI/modals/ModalsPage';
 import LoadingsPageComponent from './pages/UI/loadings/LoadingsPage';
 import TabsPageComponent from './pages/UI/Tabs/TabsPage';
 import MessagePageComponent from './pages/UI/message/MessagePageComponent';
+import LoginFormPageComponent from './pages/form/LoginPageComponent';
+import RegisterPageComponent from './pages/form/RegisterPageComponent';
+
 
 import TestComponent from './testComponents/testComponent';
 import PropsComponent from './testComponents/PropsComponent/PropComponent';
@@ -67,7 +70,10 @@ class MainComponent extends React.Component<ProviderProps> {
           <Route path="/admin/ui/loadings" component= { LoadingsPageComponent } />
           <Route path="/admin/ui/messages" component= { MessagePageComponent } />
           <Route path="/admin/ui/tabs" component= { TabsPageComponent } />
-          
+
+          <Route path="/admin/form/login" component={ LoginFormPageComponent } />
+          <Route path="/admin/form/reg" component={ RegisterPageComponent } />
+
           <Route exact={true} path="/admin" component={HomePageComponent} />
           <Route component={NotFoundPageComponent} />
         </Switch>
