@@ -16,6 +16,7 @@ import TabsPageComponent from './pages/UI/Tabs/TabsPage';
 import MessagePageComponent from './pages/UI/message/MessagePageComponent';
 import LoginFormPageComponent from './pages/form/LoginPageComponent';
 import RegisterPageComponent from './pages/form/RegisterPageComponent';
+import TableBasePageComponent from './pages/table/BaseTablePage';
 
 
 import TestComponent from './testComponents/testComponent';
@@ -73,6 +74,8 @@ class MainComponent extends React.Component<ProviderProps> {
 
           <Route path="/admin/form/login" component={ LoginFormPageComponent } />
           <Route path="/admin/form/reg" component={ RegisterPageComponent } />
+
+          <Route path="/admin/table/basic" component= { TableBasePageComponent } />
 
           <Route exact={true} path="/admin" component={HomePageComponent} />
           <Route component={NotFoundPageComponent} />
