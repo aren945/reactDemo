@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Table, Card } from 'antd';
+import { Table, Card, Modal } from 'antd';
 import { ColumnProps } from 'antd/lib/table';
 
-import axios from 'axios';
-
+// import axios from 'axios';
+import axios from '../../axios/index';
 
 interface IDataSource {
     id: number,
     userName: string,
-    gender: string,
+    gender: string | number,
     status: string,
     hobby: string,
     birthday: string,
@@ -18,7 +18,8 @@ interface IDataSource {
 
 interface Isate {
   dataSource1: IDataSource[],
-  dataSource2: IDataSource[]
+  dataSource2: IDataSource[],
+  selectedRowKeys: any[]
 }
 
 export default class BasicTablePageComponent extends React.Component<{}, Isate> {
@@ -30,7 +31,7 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
         {
           id: 0,
           userName: 'Tom',
-          gender: 'man',
+          gender: 1,
           status: '1',
           hobby: '散打',
           birthday: '2011-1-1',
@@ -40,7 +41,7 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
         {
           id: 1,
           userName: 'Tom1',
-          gender: 'man',
+          gender: 1,
           status: '2',
           hobby: '拳击',
           birthday: '2011-1-2',
@@ -50,7 +51,7 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
         {
           id: 2,
           userName: 'Tom2',
-          gender: 'woman',
+          gender: 2,
           status: '3',
           hobby: '柔道',
           birthday: '2011-1-3',
@@ -65,15 +66,22 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
     this._request();
   }
 
+  public handleOnTableRow = (record: IDataSource, index: any): void => {
+    Modal.info({
+      title: '点击了',
+      content: record.userName
+    })
+    this.setState({
+      selectedRowKeys: [index]
+    })
+  }
+
   private _request = () => {
-    const baseUrl = 'https://www.easy-mock.com/mock/5c7533756c6bc45a69241bd1/mockapi';
-    axios({
-      method: 'get',
-      url: baseUrl + '/tablelist'
+    axios.ajax({
+      url: '/tablelist'
     }).then((res: any )=> {
-      console.log(res);
       this.setState({
-        dataSource2: (res['data']['result'] as IDataSource[])
+        dataSource2: (res['result'] as IDataSource[])
       })
     })
   }
@@ -93,7 +101,10 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
       {
         title: '性别',
         dataIndex: 'gender',
-        key: 'gender'
+        key: 'gender',
+        render(key) {
+          return key === 1 ? 'man' : 'woman';
+        }
       },
       {
         title: '状态',
@@ -121,20 +132,34 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
         key: 'wakeTime'
       }
   ];
-    const { dataSource1, dataSource2 } = this.state;
-    console.log(dataSource2);
+    const { dataSource1, dataSource2, selectedRowKeys } = this.state;
     return (
         <div>
           <Card title="基础表格">
             <Table
             columns={ colums } 
             dataSource={dataSource1}
+            rowKey="id"
             bordered={true} />     
           </Card>
           <Card title="动态数据表格">
             <Table
             columns={ colums } 
             dataSource={dataSource2}
+            rowKey="id"
+            rowSelection = {
+              {
+                type: 'radio',
+                selectedRowKeys
+              }
+            }
+            onRow = { (record: any, index: any) => {
+              return {
+                onClick: () => {
+                  this.handleOnTableRow(record, index)
+                }
+              }
+            } }
             bordered={true} />     
           </Card> 
         </div>
