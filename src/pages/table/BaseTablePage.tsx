@@ -4,6 +4,7 @@ import { ColumnProps } from 'antd/lib/table';
 
 // import axios from 'axios';
 import axios from '../../axios/index';
+import { Button } from 'antd/lib/radio';
 
 interface IDataSource {
     id: number,
@@ -19,7 +20,8 @@ interface IDataSource {
 interface Isate {
   dataSource1: IDataSource[],
   dataSource2: IDataSource[],
-  selectedRowKeys: any[]
+  selectedRowKeys: any[],
+  selectedRowKeys1: number[]
 }
 
 export default class BasicTablePageComponent extends React.Component<{}, Isate> {
@@ -58,8 +60,11 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
           address: 'chengdu',
           wakeTime: '09:01'
         }
-      ]
-    } as Isate
+      ],
+      dataSource2: [],
+      selectedRowKeys: [],
+      selectedRowKeys1: []
+    }
   }
 
   componentWillMount() {
@@ -76,6 +81,17 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
     })
   }
 
+  public handleOnTableRow1 = (record: IDataSource, index: any): void => {
+    Modal.info({
+      title: '点击了',
+      content: record.userName
+    })
+    const a = this.state.selectedRowKeys1.concat([index]);
+    this.setState({
+      selectedRowKeys1: a
+    })
+  }
+
   private _request = () => {
     axios.ajax({
       url: '/tablelist'
@@ -86,8 +102,12 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
     })
   }
 
+  public delterow = () => {
+    
+  }
+
   public render(): React.ReactNode {
-    const colums:ColumnProps<{}>[] = [
+    const colums:ColumnProps<IDataSource>[] = [
       {
       title: 'ID',
       dataIndex: 'id',
@@ -132,7 +152,7 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
         key: 'wakeTime'
       }
   ];
-    const { dataSource1, dataSource2, selectedRowKeys } = this.state;
+    const { dataSource1, dataSource2, selectedRowKeys, selectedRowKeys1 } = this.state;
     return (
         <div>
           <Card title="基础表格">
@@ -153,10 +173,33 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
                 selectedRowKeys
               }
             }
-            onRow = { (record: any, index: any) => {
+            onRow = { (record: IDataSource, index: any) => {
               return {
                 onClick: () => {
                   this.handleOnTableRow(record, index)
+                }
+              }
+            } }
+            bordered={true} />     
+          </Card> 
+
+          <Card title="动态数据表格2">
+            <Button onClick={this.delterow}>删除</Button>
+            <Table
+            columns={ colums } 
+            dataSource={dataSource2}
+            rowKey="id"
+            rowSelection = {
+              {
+                type: 'checkbox',
+                selectedRowKeys: selectedRowKeys1
+              }
+            }
+            onRow = { (record: IDataSource, index: any) => {
+              return {
+                onClick: () => {
+                  console.log(record);
+                  this.handleOnTableRow1(record, index)
                 }
               }
             } }
