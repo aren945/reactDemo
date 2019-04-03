@@ -48,18 +48,25 @@ export default class Axios {
   }
 
   public static ajax(options: IAjaxOptions) {
-    const baseUrl = 'https://www.easy-mock.com/mock/5c7533756c6bc45a69241bd1/mockapi';
+    // const baseUrl = 'https://www.easy-mock.com/mock/5c7533756c6bc45a69241bd1/mockapi';
+    let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
+
+    console.log(options)
+
+    if (options.url === '/tablelist') {
+      baseApi = 'https://www.easy-mock.com/mock/5c7533756c6bc45a69241bd1/mockapi';
+    }
     return new Promise((resolve, rej) => {
       axios({
         url: options.url,
         method: 'get',
-        baseURL: baseUrl,
+        baseURL: baseApi,
         timeout: 5000,
         params: (options.data && options.data.params ) || ''
       }).then(res => {
         if (res.status === 200) {
           let data = res.data;
-          if (data['code'] === 0) {
+          if (parseInt(data['code']) === 0) {
             resolve(data);
           } else {
             Modal.info({

@@ -27,6 +27,8 @@ import ReduxTestComponent from './testComponents/ReduxShopping/ReduxTestComponen
 import ReactReduxPageContainer from './testComponents/ReactReduxTest/containers/ReactReduxPageComtainer';
 
 import { Provider, ProviderProps } from 'react-redux';
+import ErrorBoundariesPageComponent from './testComponents/ErrorBoundaries/ErrorBoundariesComponent';
+import CityPageComponent from './pages/city/CityPage';
 class MainComponent extends React.Component<ProviderProps> {
   public render(): React.ReactNode {
     return (
@@ -54,6 +56,7 @@ class MainComponent extends React.Component<ProviderProps> {
           <Route path="/test/hoc" component={HocComponent} />
           <Route path="/test/hooks" component={Hooks1Component} />
           <Route path="/test/rtest" component={ReduxTestComponent} />
+          <Route path="/test/errot-boundaries" component= { ErrorBoundariesPageComponent } />
           <Route path="/test/react-redux" component={ReactReduxPageContainer} />
           <Route component={ NotFoundPageComponent } />
         </Switch>
@@ -76,6 +79,8 @@ class MainComponent extends React.Component<ProviderProps> {
           <Route path="/admin/form/reg" component={ RegisterPageComponent } />
 
           <Route path="/admin/table/basic" component= { TableBasePageComponent } />
+
+          <Route path="/admin/city" component={ CityPageComponent } />
 
           <Route exact={true} path="/admin" component={HomePageComponent} />
           <Route component={NotFoundPageComponent} />

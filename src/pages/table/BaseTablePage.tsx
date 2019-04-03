@@ -203,7 +203,8 @@ export default class BasicTablePageComponent extends React.Component<{}, Isate> 
                 }
               }
             } }
-            bordered={true} />     
+            bordered={true}
+            pagination={{total: 3}} />     
           </Card> 
         </div>
       )
